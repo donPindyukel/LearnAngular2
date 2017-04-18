@@ -4,10 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { MyTableComponent } from './my-table/my-table.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MyTableComponent
   ],
   imports: [
     BrowserModule,
