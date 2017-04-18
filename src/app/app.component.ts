@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app works!';
+  constructor() {
+  }
+  removedEvent(i) {
+    console.log(i);
+  }
 }

@@ -1,3 +1,18 @@
-<p *ngFor="let str of products">
-  {{str.name}}
-</p>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of productsView; let i = index;">
+      <td>{{product.id}}</td>
+      <td>{{product.name}}</td>
+      <td>{{product.price}}</td>
+      <td><button (click)="onClickDelete(i)" type="button" class="btn btn-danger">Delete</button></td>
+    </tr>
+  </tbody>
+</table>

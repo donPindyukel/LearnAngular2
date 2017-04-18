@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 
 import { Products } from './products.model';
 
@@ -11,6 +11,9 @@ export class MyTableComponent implements OnInit {
   products: Products[];
   @Input()
   rows: number;
+  productsView: Products[] = [];
+  @Output()
+  removeId: EventEmitter<number> = new EventEmitter();
 
   constructor() {
     this.products = [
@@ -28,7 +31,13 @@ export class MyTableComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.rows);
+    for (let i = 0; i < this.rows; i++) {
+      this.productsView.push(this.products[i]);
+    }
+  }
+  onClickDelete(i) {
+    this.productsView.splice(i, 1);
+    this.removeId.emit(i);
   }
 
 }
