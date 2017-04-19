@@ -8,11 +8,11 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let product of productsView; let i = index;">
+    <tr *ngFor="let product of productsView; let i = index;" [class.text-color]="product.price > 500">
       <td>{{product.id}}</td>
       <td>{{product.name}}</td>
       <td>{{product.price}}</td>
-      <td><button (click)="onClickDelete(i)" type="button" class="btn btn-danger">Delete</button></td>
+      <td><button (click)="onClickDelete(product.id)" type="button" class="btn btn-danger">Delete</button></td>
     </tr>
   </tbody>
 </table>

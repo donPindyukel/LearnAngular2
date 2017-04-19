@@ -6,17 +6,22 @@ import { AlertModule } from 'ngx-bootstrap';
 
 import { AppComponent } from './app.component';
 import { MyTableComponent } from './my-table/my-table.component';
+import { FilterTableComponent } from './filter-table/filter-table.component';
+import { AddProductsComponent } from './add-products/add-products.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    MyTableComponent
+    MyTableComponent,
+    FilterTableComponent,
+    AddProductsComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    AlertModule.forRoot()
+    AlertModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,43 +1,66 @@
-import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component,
+          Input,
+          OnInit,
+          EventEmitter,
+          Output,
+          OnChanges,
+          SimpleChanges } from '@angular/core';
+import * as _ from 'underscore';
 
-import { Products } from './products.model';
+import { Product } from '../products.model';
 
 @Component({
   selector: 'app-my-table',
   templateUrl: './my-table.component.html',
   styleUrls: ['./my-table.component.css']
 })
-export class MyTableComponent implements OnInit {
-  products: Products[];
+export class MyTableComponent implements OnInit, OnChanges {
+  productsView: Product[] = [];
+
   @Input()
   rows: number;
-  productsView: Products[] = [];
+
   @Output()
   removeId: EventEmitter<number> = new EventEmitter();
 
+  @Input()
+  filter: string;
+
+  @Input()
+  products: Product[];
+
+  @Input()
+  productsLength: number;
+
   constructor() {
-    this.products = [
-      { id: 1, name : 'product 1', price : 100 },
-      { id: 2, name : 'product 2', price : 200 },
-      { id: 3, name : 'product 3', price : 300 },
-      { id: 4, name : 'product 4', price : 400 },
-      { id: 5, name : 'product 5', price : 500 },
-      { id: 6, name : 'product 6', price : 600 },
-      { id: 7, name : 'product 7', price : 700 },
-      { id: 8, name : 'product 8', price : 800 },
-      { id: 9, name : 'product 9', price : 900 },
-      { id: 10, name : 'product 10', price : 1000 }
-    ];
   }
 
   ngOnInit() {
-    for (let i = 0; i < this.rows; i++) {
-      this.productsView.push(this.products[i]);
+    this.productsView= [].concat(this.products);
+  }
+  onClickDelete(id) {
+    console.log(id);
+    this.productsView = _.reject(this.productsView, (item)=>{
+      return (item.id === id);
+    });
+    this.removeId.emit(id);
+  }
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(changes);
+    if (changes.products) return;
+    if (changes.productsLength) {
+      this.productsView = [];
+      this.productsView = [].concat(this.products);
+     return;
+    }
+    if (changes.filter.currentValue === 'All') {
+      this.productsView = [];
+      this.productsView = [].concat(this.products);
+      return;
+    } else {
+      this.productsView = _.filter(this.products, (item) => {
+        return (changes.filter.currentValue === item.category);
+      });
     }
   }
-  onClickDelete(i) {
-    this.productsView.splice(i, 1);
-    this.removeId.emit(i);
-  }
-
 }
