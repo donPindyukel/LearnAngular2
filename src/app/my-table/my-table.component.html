@@ -8,7 +8,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let product of productsView; let i = index;" [class.text-color]="product.price > 500">
+    <tr *ngFor="let product of productsService.products; let i = index;" [class.text-color]="product.price > 500">
       <td>{{product.id}}</td>
       <td>{{product.name}}</td>
       <td>{{product.price}}</td>

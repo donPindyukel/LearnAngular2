@@ -1,7 +1,6 @@
-import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
-import * as _ from 'underscore';
+import { Component, OnInit } from '@angular/core';
 
-import { Product } from '../products.model';
+import { ProductsService } from '../products.service'
 
 @Component({
   selector: 'app-add-products',
@@ -14,29 +13,19 @@ export class AddProductsComponent implements OnInit {
   price: number;
   category: string;
 
-  @Output()
-  addProduct: EventEmitter<Product> = new EventEmitter();
+  constructor(public productsService: ProductsService) {
 
-  @Input()
-  products: Product[];
-
-  constructor() { }
+  }
 
   ngOnInit() {
-    console.log(this.products);
   }
 
   onSubmit() {
-    let productMaxId = _.max(this.products, (product) => {
-      return product.id;
-    });
-    let id = productMaxId.id + 1;
-    this.addProduct.emit({
-      id,
+    this.productsService.addProduct({
       name: this.name,
       price: this.price,
       category: this.category
-    })
+    });
   }
 
 }

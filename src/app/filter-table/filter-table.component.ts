@@ -1,4 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+import { ProductsService } from '../products.service';
 
 @Component({
   selector: 'app-filter-table',
@@ -6,17 +8,14 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./filter-table.component.css']
 })
 export class FilterTableComponent implements OnInit {
-  categories: string[] = ['All', 'Category 1', 'Category 2', 'Category 3'];
-  @Output()
-  category: EventEmitter<string> = new EventEmitter();
 
-  constructor() { }
+  constructor(public productsService: ProductsService) { }
 
   ngOnInit() {
   }
 
   onChange(changes: string) {
-    this.category.emit(changes);
+    this.productsService.categorySort(changes);
   }
 
 }

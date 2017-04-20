@@ -9,6 +9,8 @@ import { MyTableComponent } from './my-table/my-table.component';
 import { FilterTableComponent } from './filter-table/filter-table.component';
 import { AddProductsComponent } from './add-products/add-products.component';
 
+import { ProductsService } from './products.service';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +25,7 @@ import { AddProductsComponent } from './add-products/add-products.component';
     HttpModule,
     AlertModule.forRoot(),
   ],
-  providers: [],
+  providers: [ProductsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,17 +1,7 @@
 <div class="container">
   <div class="row">
-    <app-filter-table
-                     (category)="changeVal($event)">
-    </app-filter-table>
-    <app-add-products
-                     (addProduct)="onAddProduct($event)"
-                     [products]="products">
-    </app-add-products>
-    <app-my-table [filter]="category"
-                  (removeId)="removedEvent($event)"
-                  [rows]="10"
-                  [products]="products"
-                  [productsLength]="products.length">
-    </app-my-table>
+    <app-filter-table></app-filter-table>
+    <app-add-products></app-add-products>
+    <app-my-table></app-my-table>
   </div>
 </div>
