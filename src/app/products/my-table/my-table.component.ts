@@ -4,7 +4,7 @@ import { Component,
           OnChanges,
           SimpleChanges } from '@angular/core';
 
-import { ProductsService } from '../products.service'
+import { ProductsService } from '../../products.service'
 
 @Component({
   selector: 'app-my-table',

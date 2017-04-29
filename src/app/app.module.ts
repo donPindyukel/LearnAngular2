@@ -4,10 +4,15 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AlertModule } from 'ngx-bootstrap';
 
+import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
-import { MyTableComponent } from './my-table/my-table.component';
-import { FilterTableComponent } from './filter-table/filter-table.component';
-import { AddProductsComponent } from './add-products/add-products.component';
+import { HomeComponent } from './home/home.component';
+import { AdminComponent } from './admin/admin.component';
+import { ProductsComponent } from './products/products.component';
+import { MyTableComponent } from './products/my-table/my-table.component';
+import { FilterTableComponent } from './products/filter-table/filter-table.component';
+import { AddProductsComponent } from './products/add-products/add-products.component';
 
 import { ProductsService } from './products.service';
 
@@ -18,12 +23,16 @@ import { ProductsService } from './products.service';
     MyTableComponent,
     FilterTableComponent,
     AddProductsComponent,
+    HomeComponent,
+    AdminComponent,
+    ProductsComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     AlertModule.forRoot(),
+    AppRoutingModule
   ],
   providers: [ProductsService],
   bootstrap: [AppComponent]

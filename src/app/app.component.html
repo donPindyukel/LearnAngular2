@@ -1,7 +1,7 @@
-<div class="container">
-  <div class="row">
-    <app-filter-table></app-filter-table>
-    <app-add-products></app-add-products>
-    <app-my-table></app-my-table>
-  </div>
-</div>
+<nav>
+  <a routerLink="/home" routerLinkActive="active">Home</a>
+  <a routerLink="/products" routerLinkActive="active">Products</a>
+  <a routerLink="/admin" routerLinkActive="active">Admin</a>
+</nav>
+
+<router-outlet></router-outlet>
