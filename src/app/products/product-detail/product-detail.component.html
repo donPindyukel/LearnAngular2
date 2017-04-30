@@ -1,4 +1,4 @@
-<table class="table table-striped">
+<table *ngIf="product" class="table table-striped">
   <thead>
     <tr>
       <th>ID</th>
@@ -17,4 +17,4 @@
   </tbody>
 </table>
 
-<button (click)="onClickGoBack()">GoBack</button>
+<button *ngIf="product" (click)="onClickGoBack()">GoBack</button>

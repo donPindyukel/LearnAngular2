@@ -7,8 +7,25 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 @NgModule({
   imports: [
     RouterModule.forChild([
-      { path: 'products', component: ProductsListComponent },
-      { path: 'products/:id', component: ProductDetailComponent }
+      {
+        path: 'products',
+        redirectTo: '/products',
+        pathMatch: 'full'
+      },
+      {
+        path: 'products',
+        component: ProductsListComponent,
+        children: [
+          {
+            path: ':id',
+            component: ProductDetailComponent
+          },
+          {
+            path: '',
+            component: ProductDetailComponent
+          }
+        ]
+      }
     ])
   ],
   exports: [
