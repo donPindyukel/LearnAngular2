@@ -65,4 +65,10 @@ export class ProductsService {
       category: product.category
     });
   }
+
+  getProductById(id: number) {
+    return this.safePoducts.find((n)=>{
+      return (n.id === id);
+    });
+  }
 }
