@@ -1,22 +1,44 @@
-<div class="col-sm-3">
-  <input class="form-control"
-         type="text"
-         placeholder="Input name"
-         [(ngModel)]="name">
-</div>
-<div class="col-sm-3">
-  <input class="form-control"
-         type="number"
-         placeholder="Input price"
-         [(ngModel)]="price">
-</div>
-<div class="col-sm-3">
-  <input class="form-control"
-         type="text"
-         placeholder="Input category"
-         [(ngModel)]="category">
-</div>
-<div class="col-sm-1">
-  <button class="btn btn-default"
-          (click)="onSubmit()">Submit</button>
-</div>
+<form (ngSubmit)="onSubmit()" #userForm="ngForm" novalidate>
+  <div class="col-sm-3">
+    <input class="form-control"
+           type="text"
+           placeholder="Input name"
+           required
+           minlength="4"
+           [(ngModel)]="model.name"
+           name="name"
+           #name="ngModel">
+    <div *ngIf="formErrors.name" class="alert alert-danger">
+      {{formErrors.name}}
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <input class="form-control"
+          type="number"
+          placeholder="Input price"
+          required
+          name="price"
+          [(ngModel)]="model.price"
+          #price="ngModel">
+    <div *ngIf="formErrors.price" class="alert alert-danger">
+      {{formErrors.price}}
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <input class="form-control"
+          type="text"
+          placeholder="Input category"
+          required
+          name="category"
+          [(ngModel)]="model.category"
+          #category="ngModel">
+    <div *ngIf="formErrors.category" class="alert alert-danger">
+      {{formErrors.category}}
+    </div>
+    </div>
+  <div class="col-sm-1">
+    <button class="btn btn-default"
+            type="submit"
+            [disabled]="!userForm.form.valid">Submit</button>
+  </div>
+</form>

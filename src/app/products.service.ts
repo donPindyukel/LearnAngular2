@@ -54,9 +54,7 @@ export class ProductsService {
   }
 
   addProduct(product: any) {
-    let productMaxId = _.max(this.safePoducts, (product) => {
-      return product.id;
-    });
+    let productMaxId = this.getProductsMaxId();
     let id = productMaxId.id + 1;
     this.safePoducts.push({
       id,
@@ -69,6 +67,12 @@ export class ProductsService {
   getProductById(id: number) {
     return this.safePoducts.find((n)=>{
       return (n.id === id);
+    });
+  }
+
+  getProductsMaxId(): any {
+    return _.max(this.safePoducts, (product) => {
+      return product.id;
     });
   }
 }
