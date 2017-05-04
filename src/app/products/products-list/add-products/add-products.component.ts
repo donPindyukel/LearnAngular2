@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { NgForm } from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 
-import { ProductsService } from '../../../products.service'
+import { ProductsService } from '../../../products.service';
 import { Product } from '../../../products.model';
 
 @Component({
@@ -9,44 +9,61 @@ import { Product } from '../../../products.model';
   templateUrl: './add-products.component.html',
   styleUrls: ['./add-products.component.css']
 })
-export class AddProductsComponent implements OnInit, AfterViewInit {
+export class AddProductsComponent implements OnInit {
 
   model: Product;
+  userForm: FormGroup;
   formErrors = {
-    name: "",
-    price: "",
-    category: ""
+    "name": "",
+    "price": "",
+    "category": ""
   };
 
   validationMessages = {
-    name: {
-      required: "Обязательное поле.",
-      minlength: "Значение должно быть не менее 4х символов.",
+    "name": {
+      "required": "Обязательное поле.",
+      "minlength": "Значение должно быть не менее 4х символов.",
     },
-    price: {
-      required: "Обязательное поле."
+    "price": {
+      "required": "Обязательное поле."
     },
-    category: {
-      required: "Обязательное поле."
+    "category": {
+      "required": "Обязательное поле."
     }
   };
 
-  @ViewChild('userForm') userForm: NgForm;
-
-  constructor(public productsService: ProductsService) {
-    this.model = new Product (this.productsService.getProductsMaxId(), '', 0, '');
+  constructor(public productsService: ProductsService, private fb: FormBuilder) {
+    this.model = new Product (/*this.productsService.getProductsMaxId(), '', 0, ''*/);
   }
 
-  ngAfterViewInit() {
-    this.userForm.valueChanges.subscribe(data => this.onValueChanged(data));
-  }
 
   ngOnInit() {
+    this.buildForm();
   }
 
-  onValueChanged(data?: any) {
+  buildForm() {
+    this.userForm = this.fb.group({
+      "name": [this.model.name, [
+        Validators.required,
+        Validators.minLength(4),
+      ]],
+      "price": [this.model.price, [
+        Validators.required,
+      ]],
+      "category": [this.model.category, [
+        Validators.required
+      ]]
+    });
+
+    this.userForm.valueChanges
+      .subscribe(data => this.onValueChange(data));
+
+    this.onValueChange();
+  }
+
+  onValueChange(data?: any) {
     if (!this.userForm) return;
-    let form = this.userForm.form;
+    let form = this.userForm;
 
     for (let field in this.formErrors) {
       this.formErrors[field] = "";
@@ -62,11 +79,8 @@ export class AddProductsComponent implements OnInit, AfterViewInit {
   }
 
   onSubmit() {
-    this.productsService.addProduct({
-      name: this.model.name,
-      price: this.model.price,
-      category: this.model.category
-    });
+    this.productsService.addProduct(this.userForm.value);
+    //console.log(this.userForm.value);
   }
 
 }

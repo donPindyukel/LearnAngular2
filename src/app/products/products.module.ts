@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AlertModule } from 'ngx-bootstrap';
+import { ReactiveFormsModule } from "@angular/forms";
 
 import { ProductsListComponent } from './products-list/products-list.component';
 import { MyTableComponent } from './products-list/my-table/my-table.component';
@@ -21,6 +22,7 @@ import { ProductsRoutingModule } from './products-routing.module';
     FormsModule,
     HttpModule,
     AlertModule.forRoot(),
+    ReactiveFormsModule
   ],
   declarations: [
     ProductsListComponent,

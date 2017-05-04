@@ -1,13 +1,10 @@
-<form (ngSubmit)="onSubmit()" #userForm="ngForm" novalidate>
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
   <div class="col-sm-3">
     <input class="form-control"
            type="text"
            placeholder="Input name"
-           required
-           minlength="4"
-           [(ngModel)]="model.name"
-           name="name"
-           #name="ngModel">
+           formControlName="name">
+
     <div *ngIf="formErrors.name" class="alert alert-danger">
       {{formErrors.name}}
     </div>
@@ -16,10 +13,8 @@
     <input class="form-control"
           type="number"
           placeholder="Input price"
-          required
-          name="price"
-          [(ngModel)]="model.price"
-          #price="ngModel">
+          formControlName="price">
+
     <div *ngIf="formErrors.price" class="alert alert-danger">
       {{formErrors.price}}
     </div>
@@ -28,10 +23,8 @@
     <input class="form-control"
           type="text"
           placeholder="Input category"
-          required
-          name="category"
-          [(ngModel)]="model.category"
-          #category="ngModel">
+          formControlName="category">
+
     <div *ngIf="formErrors.category" class="alert alert-danger">
       {{formErrors.category}}
     </div>
@@ -39,6 +32,6 @@
   <div class="col-sm-1">
     <button class="btn btn-default"
             type="submit"
-            [disabled]="!userForm.form.valid">Submit</button>
+            [disabled]="!userForm.valid">Submit</button>
   </div>
 </form>
