@@ -1,3 +1,16 @@
-<p>
-  Hello in my App!
-</p>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>User Name</th>
+      <th>Comment</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let comment of comments">
+      <td>{{ comment.userName }}</td>
+      <td>{{ comment.commentText }}</td>
+      <td>{{ comment.Date }}</td>
+    </tr>
+  </tbody>
+</table>

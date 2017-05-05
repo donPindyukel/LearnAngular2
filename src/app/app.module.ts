@@ -1,31 +1,31 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ProductsModule } from './products/products.module';
-
-import { AppRoutingModule } from './app-routing.module';
+import { RouterModule } from "@angular/router";
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import { ReactiveFormsModule } from "@angular/forms";
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { AdminComponent } from './admin/admin.component';
+import { AddCommentComponent } from './add-comment/add-comment.component';
 
-import { ProductsService } from './products.service';
-
+import { CommentService } from "./comment.service";
+import { routes } from "./app.routes";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    AdminComponent,
+    AddCommentComponent
   ],
   imports: [
     BrowserModule,
-  //  FormsModule,
-//    HttpModule,
-//    AlertModule.forRoot(),
-    AppRoutingModule,
-    ProductsModule
+    FormsModule,
+    HttpModule,
+    ReactiveFormsModule,
+    RouterModule.forRoot(routes)
   ],
-  providers: [ProductsService],
-  bootstrap: [AppComponent]
+  providers: [CommentService],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

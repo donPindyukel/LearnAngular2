@@ -1,10 +1,10 @@
-import { ItvdnPage } from './app.po';
+import { LearnAngular2Page } from './app.po';
 
-describe('itvdn App', () => {
-  let page: ItvdnPage;
+describe('learn-angular2 App', () => {
+  let page: LearnAngular2Page;
 
   beforeEach(() => {
-    page = new ItvdnPage();
+    page = new LearnAngular2Page();
   });
 
   it('should display message saying app works', () => {
